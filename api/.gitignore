@@ -1,1 +1,70 @@
 api/.vs/
+# .NET Core
+api/bin/
+api/bin/Debug/
+api/obj/
+
+# User-specific files
+.idea/
+.vscode/
+
+# Windows image file caches
+Thumbs.db
+ehthumbs.db
+
+# ASP.NET Scaffolding
+ScaffoldingReadMe.txt
+
+# VS Code directory
+.vscode/
+
+# ASP.NET Core web app config files (optional)
+appsettings.json
+appsettings.*.json
+# Конфигурационные файлы окружений
+# Убедитесь, что они не содержат чувствительных данных перед добавлением в gitignore
+
+# Secrets
+secrets.json
+
+# SQLite database files
+*.sqlite
+*.db
+
+# JetBrains Rider IDE files
+.idea/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# ASP.NET Core specific files and folders
+project.lock.json
+project.fragment.lock.json
+
+# Build results
+/dist/
+/build/
+
+# NPM
+node_modules/
+
+# Yarn
+yarn-error.log
+
+# ASP.NET Core Publish output
+publish/
+
+# DotNet tools
+.dotnet-tools/
+
+# User-specific files (e.g. Visual Studio, Rider)
+.vs/
+.vs2019/
+.vs2017/
+.idea/
+
+# Logs
+*.log
