@@ -92,5 +92,20 @@ namespace api.Controllers
 
             return CreatedAtAction(nameof(GetTasks), new { id = task.Id }, taskForReturn);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteTask(Guid id)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            
+            var taskForDelete = await _tasksRepo.DeleteTask(id, userId);
+
+            if(taskForDelete is null)
+            {
+                return NotFound("Task not found");
+            } 
+
+            return NoContent();
+        }
     }
 }

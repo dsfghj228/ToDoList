@@ -10,5 +10,6 @@ namespace api.Interfaces
     {
         Task<List<ToDoTask>> GetTasks(AppUser user);
         Task<ToDoTask> CreateTask(ToDoTask task);
+        Task<ToDoTask> DeleteTask(Guid Id, string AppUserId);
     }
 }

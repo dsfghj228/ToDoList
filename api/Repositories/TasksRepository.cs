@@ -26,6 +26,21 @@ namespace api.Repositories
             return task;
         }
 
+        public async Task<ToDoTask> DeleteTask(Guid Id, string AppUserId)
+        {
+            var taskForDelete = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == Id && t.AppUserId == AppUserId);
+
+            if(taskForDelete is null)
+            {
+                return null;
+            }
+
+             _context.Tasks.Remove(taskForDelete);
+             await _context.SaveChangesAsync();
+
+             return taskForDelete;
+        }
+
         public async Task<List<ToDoTask>> GetTasks(AppUser user)
         {
             return await _context.Tasks.Where(t => t.AppUserId == user.Id).ToListAsync();
