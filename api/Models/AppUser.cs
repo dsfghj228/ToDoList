@@ -4,5 +4,6 @@ namespace api.Models
 {
     public class AppUser : IdentityUser
     {
+        public ICollection<ToDoTask> Tasks { get; set; }
     }
 }
