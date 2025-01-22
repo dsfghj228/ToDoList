@@ -9,5 +9,6 @@ namespace api.Interfaces
     public interface ITasksRepository
     {
         Task<List<ToDoTask>> GetTasks(AppUser user);
+        Task<ToDoTask> CreateTask(ToDoTask task);
     }
 }

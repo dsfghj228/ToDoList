@@ -18,6 +18,14 @@ namespace api.Repositories
             _context = context;
         }
 
+        public async Task<ToDoTask> CreateTask(ToDoTask task)
+        {
+            await _context.Tasks.AddAsync(task);
+            await _context.SaveChangesAsync();
+
+            return task;
+        }
+
         public async Task<List<ToDoTask>> GetTasks(AppUser user)
         {
             return await _context.Tasks.Where(t => t.AppUserId == user.Id).ToListAsync();
