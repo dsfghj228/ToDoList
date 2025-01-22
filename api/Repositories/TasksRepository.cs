@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using api.Data;
+using api.Dtos.Tasks;
 using api.Interfaces;
 using api.Models;
 using Microsoft.EntityFrameworkCore;
@@ -44,6 +45,23 @@ namespace api.Repositories
         public async Task<List<ToDoTask>> GetTasks(AppUser user)
         {
             return await _context.Tasks.Where(t => t.AppUserId == user.Id).ToListAsync();
+        }
+
+        public async Task<ToDoTask> UpdateTask(Guid Id, string AppUserId, CreateOrUpdateTaskModel task)
+        {
+            var taskForUpdate = await _context.Tasks.FirstOrDefaultAsync(t => t.Id == Id && t.AppUserId == AppUserId);
+
+            if (taskForUpdate is null)
+            {
+                return null;
+            }
+
+            taskForUpdate.Title = task.Title;
+
+            _context.Tasks.Update(taskForUpdate);
+            await _context.SaveChangesAsync();
+
+            return taskForUpdate;
         }
     }
 }

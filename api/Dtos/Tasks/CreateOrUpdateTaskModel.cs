@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace api.Dtos.Tasks
 {
-    public class CreateTaskModel
+    public class CreateOrUpdateTaskModel
     {
         public string Title { get; set; }
     }

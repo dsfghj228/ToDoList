@@ -63,7 +63,7 @@ namespace api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateTask([FromBody] CreateTaskModel createTaskModel)
+        public async Task<IActionResult> CreateTask([FromBody] CreateOrUpdateTaskModel createTaskModel)
         {
             if (createTaskModel is null)
             {
@@ -106,6 +106,23 @@ namespace api.Controllers
             } 
 
             return NoContent();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateTask(Guid id, CreateOrUpdateTaskModel updateTaskModel)
+        {
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            var updatedTask = await _tasksRepo.UpdateTask(id, userId, updateTaskModel);
+
+            if(updatedTask is null)
+            {
+                return NotFound("Task not found");
+            }
+
+            var taskForReturn = _mapper.Map<TaskForReturn>(updatedTask);
+
+            return Ok(taskForReturn);
         }
     }
 }
