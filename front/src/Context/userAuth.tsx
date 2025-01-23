@@ -1,7 +1,8 @@
 import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { loginAPI, registerAPI } from "../Services/AuthService";
+import { loginAPI, registerAPI } from "../Services/AuthService.tsx";
 import axios from "axios";
+import App from "../App.tsx";
 
 type UserProfile = {
     userName: string;
@@ -23,7 +24,7 @@ export const UserProvider = (children: React.ReactNode) => {
     const navigate = useNavigate();
     const [ token, setToken ] = useState<string | null>(null);
     const [ user, setUser ] = useState<UserProfile | null>(null);
-    const [ isReady, setIsReady ] = useState(false);
+    //const [ isReady, setIsReady ] = useState(false);
 
     useEffect(() => {
         const user = localStorage.getItem("user");
@@ -34,7 +35,7 @@ export const UserProvider = (children: React.ReactNode) => {
             setToken(token);
             axios.defaults.headers.common["Authorization"] = "Bearer " + token;
         }
-        setIsReady(true);
+        //setIsReady(true);
     }, [])
 
     const register = async (email: string, username: string, password: string) => {
@@ -87,7 +88,7 @@ export const UserProvider = (children: React.ReactNode) => {
 
     return (
         <UserContext.Provider value={{ login, user, token, logout, isLoggedIn, register }}>
-            {isReady ? children : null}
+            <App />
         </UserContext.Provider>
     )
 };
