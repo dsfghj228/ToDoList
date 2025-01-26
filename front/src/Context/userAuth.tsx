@@ -20,7 +20,7 @@ type UserContextType = {
 
 const UserContext = createContext<UserContextType>({} as UserContextType);
 
-export const UserProvider = (children: React.ReactNode) => {
+export const UserProvider = ({ children }: { children: React.ReactNode }) => {
     const navigate = useNavigate();
     const [ token, setToken ] = useState<string | null>(null);
     const [ user, setUser ] = useState<UserProfile | null>(null);
@@ -88,7 +88,7 @@ export const UserProvider = (children: React.ReactNode) => {
 
     return (
         <UserContext.Provider value={{ login, user, token, logout, isLoggedIn, register }}>
-            <App />
+            {children}
         </UserContext.Provider>
     )
 };
