@@ -1,0 +1,19 @@
+.tasks-box {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    margin: auto;
+    margin-top: 40px;
+}
+
+.task {
+    display: flex;
+    justify-content: space-around;
+    width: 500px;
+    background-color: #bcb8ee;
+    margin-bottom: 20px;
+    padding: 20px;
+    font-size: 20px;
+    border: none;
+    border-radius: 15px;
+}

@@ -2,7 +2,6 @@ import React, { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginAPI, registerAPI } from "../Services/AuthService.tsx";
 import axios from "axios";
-import App from "../App.tsx";
 
 type UserProfile = {
     userName: string;
