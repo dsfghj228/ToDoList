@@ -7,8 +7,8 @@
 }
 
 .task {
-    display: flex;
-    justify-content: space-around;
+    display: block; /* Заменяем на block, чтобы текст переносился */
+    text-align: center;
     width: 500px;
     background-color: #bcb8ee;
     margin-bottom: 20px;
@@ -16,4 +16,7 @@
     font-size: 20px;
     border: none;
     border-radius: 15px;
+    overflow-wrap: break-word; /* Сохраняем для переноса длинных слов */
+    word-wrap: break-word; /* Совместимость */
+    white-space: normal; /* Разрешаем перенос текста */
 }

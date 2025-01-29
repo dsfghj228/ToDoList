@@ -1,17 +1,29 @@
 import React, { useState } from 'react';
 import '../Styles/TaskInput.css';
 
-type Props = {}
+type Props = {
+    addTask: (title: string) => void;
+}
 
-const TaskInput = (props: Props) => {
+const TaskInput = ({ addTask }: Props) => {
     const [ task, setTask ] = useState<string>("");
+    const [ disabled, setDisabled ] = useState<boolean>(false)
+
+    const createNewTask = ( title: string ) => {
+        setDisabled(true)
+        addTask(title)
+        setTask("")
+        setDisabled(false)
+    }
+
   return (
     <div>
-        <input className="task-input" 
+        <input className="task-input"
+               type='text' 
                value={task} 
                onChange={(e) => setTask(e.target.value)} 
                placeholder="Enter task description" />
-        <button>Add</button>
+        <button disabled={disabled} onClick={() => createNewTask(task)}>Add</button>
     </div>
   )
 }

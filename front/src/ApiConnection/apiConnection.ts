@@ -7,3 +7,9 @@ export const getTasks = async () => {
 
     return data;
 };
+
+export const postTask = async (title: string) => {
+    const response = await axios.post(api + "/Tasks", { title });
+    
+    return response.data;
+};

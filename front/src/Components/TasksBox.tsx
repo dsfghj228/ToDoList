@@ -12,7 +12,7 @@ const TasksBox = (props: Props) => {
         <div className='tasks-box'>
           {tasks ? (
             tasks.map(t => {
-              return <div className='task'>{t.title}</div>;
+              return <div key={t.id} className='task'>{t.title}</div>;
             })
           ) : (
             <h1 className='no-task-notification'>No tasks yet</h1>
