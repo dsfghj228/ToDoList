@@ -19,3 +19,9 @@ export const deleteTask = async (id: string) => {
 
     return response;
 }
+
+export const putTask = async (id: string, newTitle: string) => {
+    const response = await axios.put(api + "/Tasks/" + id, { title: newTitle});
+
+    return response.data;
+}

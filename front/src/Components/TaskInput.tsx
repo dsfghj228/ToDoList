@@ -10,10 +10,12 @@ const TaskInput = ({ addTask }: Props) => {
     const [ disabled, setDisabled ] = useState<boolean>(false)
 
     const createNewTask = ( title: string ) => {
+      if(title !== "") {
         setDisabled(true)
         addTask(title)
         setTask("")
         setDisabled(false)
+      }
     }
 
   return (
