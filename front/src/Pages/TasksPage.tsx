@@ -2,9 +2,9 @@ import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar.tsx'
 import TaskInput from '../Components/TaskInput.tsx'
 import '../Styles/TasksPage.css'
-import { getTasks, postTask } from '../ApiConnection/apiConnection.ts'
+import { getTasks, postTask, deleteTask } from '../ApiConnection/apiConnection.ts'
 import { useDispatch } from 'react-redux'
-import { addTaskToStore, clearState, get } from '../ReduxToolkit/slice.ts'
+import { addTaskToStore, clearState, deleteTaskFromStore, get } from '../ReduxToolkit/slice.ts'
 import TasksBox from '../Components/TasksBox.tsx'
 
 type Props = {}
@@ -16,9 +16,23 @@ const TasksPage = (props: Props) => {
   const addTask = async (title: string) => {
     try {
         const data = await postTask(title);
-        dispatch(addTaskToStore(data))
+        if(data)
+        {
+          dispatch(addTaskToStore(data));
+        }
     } catch (err) {
         console.error('Error occurred:', err);
+    }
+  };
+
+  const delTask = async (id: string) => {
+    try {
+      const data = await deleteTask(id);
+      if (data) {
+        dispatch(deleteTaskFromStore(id));
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
@@ -43,7 +57,7 @@ const TasksPage = (props: Props) => {
       <Navbar />
       <div className="main-part">
         <TaskInput addTask={addTask} />
-        <TasksBox />
+        <TasksBox delTask={delTask} />
       </div>
     </div>
   )

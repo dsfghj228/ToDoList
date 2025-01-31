@@ -60,12 +60,11 @@ input {
     color: black;
     font-size: 16px;
     transition: color 0.5s, text-decoration 0.5s;
-}
-  
-.link-box>a:hover {
-    color: #0056b3; 
-    text-decoration: underline;
-    transition: .5s;
+    &:hover{
+        color: #0056b3; 
+        text-decoration: underline;
+        transition: .5s;
+    }
 }
 
 button {
@@ -78,9 +77,8 @@ button {
     border: none;
     border-radius: 15px;
     transition: .5s;
-}
-
-button:hover {
-    background-color: #0056b3;
-    transition: .5s;
+    &:hover {
+        background-color: #0056b3;
+        transition: .5s;
+    }
 }

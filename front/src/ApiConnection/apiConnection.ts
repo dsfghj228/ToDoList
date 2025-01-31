@@ -3,9 +3,9 @@ import axios from "axios";
 const api = "http://localhost:5088/api";
 
 export const getTasks = async () => {
-    const data = await axios.get(api + "/Tasks");
+    const response = await axios.get(api + "/Tasks");
 
-    return data;
+    return response;
 };
 
 export const postTask = async (title: string) => {
@@ -13,3 +13,9 @@ export const postTask = async (title: string) => {
     
     return response.data;
 };
+
+export const deleteTask = async (id: string) => {
+    const response = await axios.delete(api + "/Tasks/" + id);
+
+    return response;
+}
